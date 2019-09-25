@@ -10,12 +10,13 @@ const (
 )
 
 func main() {
+	newWindow()
 	if err := sdl.Init(sdl.INIT_EVERYTHING); err != nil {
 		panic(err)
 	}
 	defer sdl.Quit()
 
-	window, err := sdl.CreateWindow("ld45 test", sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED, gWindowWidth, gWindowHeight, sdl.WINDOW_SHOWN)
+	window, err := sdl.CreateWindow("SDL2 Window", sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED, gWindowWidth, gWindowHeight, sdl.WINDOW_SHOWN)
 	if err != nil {
 		panic(err)
 	}
@@ -28,7 +29,7 @@ func main() {
 	surface.FillRect(nil, 0)
 
 	rect := sdl.Rect{X: 0, Y: 0, W: gWindowWidth, H: gWindowHeight}
-	surface.FillRect(&rect, 0xff0000) // RGB format
+	surface.FillRect(&rect, 0xF2F2F2) // RGB format
 	window.UpdateSurface()
 
 	running := true
