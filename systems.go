@@ -25,3 +25,12 @@ func physicsSystem(ps map[uint32]positionComp, vs map[uint32]physicsComp) {
 		}
 	}
 }
+
+func collisionRenderSystem(ps map[uint32]positionComp, cs map[uint32]collisionComp) {
+	for id, c := range cs {
+		p, hasPosition := ps[id]
+		if hasPosition {
+			rl.DrawRectangleLines(int32(p.x+c.xOffset), int32(p.y+c.yOffset), int32(c.width), int32(c.height), rl.Yellow)
+		}
+	}
+}

@@ -12,16 +12,16 @@ func loadLevel(levelID uint16) {
 	gPositionCompMap[0] = positionComp{x: 100, y: 100, width: 20, height: 20}
 	gRenderCompMap[0] = renderComp{color: rl.Red}
 	gPhysicsCompMap[0] = physicsComp{x: 0.01, y: 0.01}
-	// since this entity is the only one with a physicsComp, it's the only one that the physicsSystem will update
+	gCollisionCompMap[0] = collisionComp{xOffset: -2.5, yOffset: -2.5, width: 25, height: 25}
 
 	gPositionCompMap[56] = positionComp{x: 300, y: 40, width: 20, height: 50}
 	gRenderCompMap[56] = renderComp{color: rl.Blue}
+	gCollisionCompMap[56] = collisionComp{xOffset: 5, yOffset: -25, width: 10, height: 100}
 
 	gPositionCompMap[404] = positionComp{x: 30, y: 400, width: 50, height: 20}
 	gRenderCompMap[404] = renderComp{color: rl.Green}
 
 	gPositionCompMap[76] = positionComp{x: 30, y: 400, width: 50, height: 20}
-	// since this doesn't have a renderComp associated with this entity ID, the renderSystem will skip it
 }
 
 func main() {
@@ -32,8 +32,12 @@ func main() {
 	for !rl.WindowShouldClose() {
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.Black)
+
+		// ECS System Updates -- organized by impact
 		physicsSystem(gPositionCompMap, gPhysicsCompMap)
 		renderSystem(gPositionCompMap, gRenderCompMap)
+		collisionRenderSystem(gPositionCompMap, gCollisionCompMap)
+
 		rl.EndDrawing()
 	}
 	rl.CloseWindow()

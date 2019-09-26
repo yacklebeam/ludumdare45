@@ -17,3 +17,11 @@ type physicsComp struct {
 	x float32
 	y float32
 }
+
+type collisionComp struct {
+	xOffset       float32
+	yOffset       float32
+	width         float32
+	height        float32
+	collisionType uint8
+}
