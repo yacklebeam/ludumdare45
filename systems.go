@@ -34,3 +34,12 @@ func collisionRenderSystem(ps map[uint32]positionComp, cs map[uint32]collisionCo
 		}
 	}
 }
+
+func textRenderSystem(ps map[uint32]positionComp, ts map[uint32]textComponent) {
+	for id, t := range ts {
+		p, hasPosition := ps[id]
+		if hasPosition {
+			rl.DrawText(t.text, int32(p.x+t.xOffset), int32(p.y+t.yOffset), t.size, t.color)
+		}
+	}
+}
