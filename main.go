@@ -8,26 +8,25 @@ const (
 )
 
 func main() {
+	// setup game
+	gPositionCompMap[0] = positionComp{x: 100, y: 100, width: 20, height: 20}
+	gRenderCompMap[0] = renderComp{color: rl.Red}
+
+	gPositionCompMap[56] = positionComp{x: 300, y: 40, width: 20, height: 50}
+	gRenderCompMap[56] = renderComp{color: rl.Blue}
+
+	gPositionCompMap[404] = positionComp{x: 30, y: 400, width: 50, height: 20}
+	gRenderCompMap[404] = renderComp{color: rl.Green}
+
+	gPositionCompMap[76] = positionComp{x: 30, y: 400, width: 50, height: 20}
+	// since this doesn't have a renderComp associated with this entity ID, the renderSystem will skip it
+
 	rl.InitWindow(gWindowWidth, gWindowHeight, "Ludum Dare #45 Game")
-
-	textColor := rl.Gray
-
-	rl.SetTargetFPS(60)
-
 	for !rl.WindowShouldClose() {
-
-		if rl.IsKeyDown(rl.KeyQ) {
-			textColor = rl.Red
-		}
-
 		rl.BeginDrawing()
-
 		rl.ClearBackground(rl.RayWhite)
-
-		rl.DrawText("LUDUM DARE 45 GAME", 190, 200, 20, textColor)
-
+		renderSystem(gPositionCompMap, gRenderCompMap)
 		rl.EndDrawing()
 	}
-
 	rl.CloseWindow()
 }
