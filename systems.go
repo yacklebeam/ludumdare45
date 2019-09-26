@@ -10,7 +10,18 @@ func renderSystem(ps map[uint32]positionComp, rs map[uint32]renderComp) {
 	for id, r := range rs {
 		p, hasPosition := ps[id]
 		if hasPosition {
-			rl.DrawRectangle(p.x, p.y, p.width, p.height, r.color)
+			rl.DrawRectangle(int32(p.x), int32(p.y), int32(p.width), int32(p.height), r.color)
+		}
+	}
+}
+
+func physicsSystem(ps map[uint32]positionComp, vs map[uint32]physicsComp) {
+	for id, v := range vs {
+		p, hasPosition := ps[id]
+		if hasPosition {
+			p.x += v.x
+			p.y += v.y
+			ps[id] = p
 		}
 	}
 }

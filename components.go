@@ -3,12 +3,17 @@ package main
 import rl "github.com/gen2brain/raylib-go/raylib"
 
 type positionComp struct {
-	x      int32
-	y      int32
-	width  int32
-	height int32
+	x      float32
+	y      float32
+	width  float32
+	height float32
 }
 
 type renderComp struct {
 	color rl.Color
+}
+
+type physicsComp struct {
+	x float32
+	y float32
 }
