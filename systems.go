@@ -15,12 +15,12 @@ func renderSystem(ps map[uint32]positionComp, rs map[uint32]renderComp) {
 	}
 }
 
-func physicsSystem(ps map[uint32]positionComp, vs map[uint32]physicsComp) {
+func physicsSystem(ps map[uint32]positionComp, vs map[uint32]physicsComp, t float32) {
 	for id, v := range vs {
 		p, hasPosition := ps[id]
 		if hasPosition {
-			p.x += v.x
-			p.y += v.y
+			p.x += v.x * t
+			p.y += v.y * t
 			ps[id] = p
 		}
 	}
