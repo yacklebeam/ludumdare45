@@ -59,10 +59,10 @@ func main() {
 
 	loadLevel(0)
 
-	img := rl.LoadImage("testtileset.png")
+	img := rl.LoadImage("assets/testtileset.png")
 	tex := rl.LoadTextureFromImage(img)
 	rl.UnloadImage(img)
-	gameMap, _ := tiled.LoadFromFile("testmap.tmx")
+	gameMap, _ := tiled.LoadFromFile("assets/testmap.tmx")
 
 	for !rl.WindowShouldClose() {
 		t := rl.GetFrameTime()
