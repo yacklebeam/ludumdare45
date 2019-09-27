@@ -13,7 +13,7 @@ func main() {
 
 	camera := rl.Camera3D{}
 	camera.Position = rl.NewVector3(4.0, 2.0, 4.0)
-	camera.Target = rl.NewVector3(0.0, 1.8, 0.0)
+	camera.Target = rl.NewVector3(0.0, 1.93, 0.0)
 	camera.Up = rl.NewVector3(0.0, 1.0, 0.0)
 	camera.Fovy = 60.0
 	camera.Type = rl.CameraPerspective
@@ -37,9 +37,7 @@ func main() {
 		rl.UpdateCamera(&camera) // Update camera
 
 		rl.BeginDrawing()
-
 		rl.ClearBackground(rl.RayWhite)
-
 		rl.BeginMode3D(camera)
 
 		rl.DrawPlane(rl.NewVector3(0.0, 0.0, 0.0), rl.NewVector2(64.0, 64.0), rl.LightGray) // Draw ground
@@ -54,7 +52,6 @@ func main() {
 		}
 
 		rl.EndMode3D()
-
 		rl.EndDrawing()
 	}
 
