@@ -29,25 +29,38 @@ func loadLevel(levelID uint16) {
 	gTextCompMap[76] = textComponent{text: "Example text", color: rl.White, size: 20, xOffset: 0, yOffset: 0}
 }
 
-func drawTileMap(tilemap *tiled.Map, texture rl.Texture2D) {
+func drawTileMap(tilemap *tiled.Map, texture rl.Texture2D, scaleFactor float32) {
 	tileMapImage := texture
 
 	tileW := int32(tilemap.TileWidth)
 	tileH := int32(tilemap.TileHeight)
 
 	for _, layer := range tilemap.Layers {
+
 		for tileIndex, tile := range layer.Tiles {
-			id := int32(tile.ID)
 
-			tileDestX := int32(tileIndex%tilemap.Width) * tileW
-			tileDestY := int32(int32(tileIndex)/int32(tilemap.Width)) * tileH
+			if !tile.IsNil() {
 
-			var tileSrcX int32 = id % (tileMapImage.Width / tileW)
-			var tileSrcY int32 = int32(id / (tileMapImage.Width / tileW))
+				id := int32(tile.ID)
 
-			rl.DrawTexturePro(tileMapImage,
-				rl.NewRectangle(float32(tileSrcX*tileW), float32(tileSrcY*tileH), float32(tileW), float32(tileH)),
-				rl.NewRectangle(float32(tileDestX), float32(tileDestY), float32(tileW), float32(tileH)), rl.NewVector2(0, 0), 0, rl.White)
+				tileDestX := int32(tileIndex%tilemap.Width) * tileW
+				tileDestY := int32(int32(tileIndex)/int32(tilemap.Width)) * tileH
+
+				var tileSrcX int32 = id % (tileMapImage.Width / tileW)
+				var tileSrcY int32 = int32(id / (tileMapImage.Width / tileW))
+
+				var rotation float32 = 0.0
+				var offset rl.Vector2 = rl.NewVector2(0, 0)
+
+				if tile.DiagonalFlip {
+					rotation = 90.0
+					offset = rl.NewVector2(0, float32(tileW)*scaleFactor)
+				}
+
+				rl.DrawTexturePro(tileMapImage,
+					rl.NewRectangle(float32(tileSrcX*tileW), float32(tileSrcY*tileH), float32(tileW), float32(tileH)),
+					rl.NewRectangle(float32(tileDestX)*scaleFactor, float32(tileDestY)*scaleFactor, float32(tileW)*scaleFactor, float32(tileH)*scaleFactor), offset, rotation, rl.White)
+			}
 
 		}
 	}
@@ -59,10 +72,10 @@ func main() {
 
 	loadLevel(0)
 
-	img := rl.LoadImage("assets/testtileset.png")
+	img := rl.LoadImage("assets/concrete-caution.png")
 	tex := rl.LoadTextureFromImage(img)
 	rl.UnloadImage(img)
-	gameMap, _ := tiled.LoadFromFile("assets/testmap.tmx")
+	gameMap, _ := tiled.LoadFromFile("assets/concrete-caution.tmx")
 
 	for !rl.WindowShouldClose() {
 		t := rl.GetFrameTime()
@@ -72,7 +85,7 @@ func main() {
 		// ECS System Updates -- organized by impact
 		physicsSystem(gPositionCompMap, gPhysicsCompMap, t)
 
-		drawTileMap(gameMap, tex)
+		drawTileMap(gameMap, tex, 4.0)
 
 		// Rendering
 		renderSystem(gPositionCompMap, gRenderCompMap)
