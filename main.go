@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/gen2brain/raylib-go/raylib"
+	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
 const (
@@ -25,7 +25,7 @@ func main() {
 
 	for i := 0; i < maxColumns; i++ {
 		heights[i] = float32(rl.GetRandomValue(1, 12))
-		positions[i] = rl.NewVector3(float32(rl.GetRandomValue(-15, 15)), heights[i]/2, float32(rl.GetRandomValue(-15, 15)))
+		positions[i] = rl.NewVector3(float32(rl.GetRandomValue(-30, 30)), heights[i]/2, float32(rl.GetRandomValue(-30, 30)))
 		colors[i] = rl.NewColor(uint8(rl.GetRandomValue(20, 255)), uint8(rl.GetRandomValue(10, 55)), 30, 255)
 	}
 
@@ -42,10 +42,10 @@ func main() {
 
 		rl.BeginMode3D(camera)
 
-		rl.DrawPlane(rl.NewVector3(0.0, 0.0, 0.0), rl.NewVector2(32.0, 32.0), rl.LightGray) // Draw ground
-		rl.DrawCube(rl.NewVector3(-16.0, 2.5, 0.0), 1.0, 5.0, 32.0, rl.Blue)                // Draw a blue wall
-		rl.DrawCube(rl.NewVector3(16.0, 2.5, 0.0), 1.0, 5.0, 32.0, rl.Lime)                 // Draw a green wall
-		rl.DrawCube(rl.NewVector3(0.0, 2.5, 16.0), 32.0, 5.0, 1.0, rl.Gold)                 // Draw a yellow wall
+		rl.DrawPlane(rl.NewVector3(0.0, 0.0, 0.0), rl.NewVector2(64.0, 64.0), rl.LightGray) // Draw ground
+		rl.DrawCube(rl.NewVector3(-32.0, 2.5, 0.0), 1.0, 5.0, 64.0, rl.Blue)                // Draw a blue wall
+		rl.DrawCube(rl.NewVector3(32.0, 2.5, 0.0), 1.0, 5.0, 64.0, rl.Lime)                 // Draw a green wall
+		rl.DrawCube(rl.NewVector3(0.0, 2.5, 32.0), 64.0, 5.0, 1.0, rl.Gold)                 // Draw a yellow wall
 
 		// Draw some cubes around
 		for i := 0; i < maxColumns; i++ {
