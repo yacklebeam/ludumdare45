@@ -1,6 +1,9 @@
 package main
 
-import rl "github.com/gen2brain/raylib-go/raylib"
+import (
+	rl "github.com/gen2brain/raylib-go/raylib"
+	sys "github.com/yacklebeam/ludumdare45/system"
+)
 
 const (
 	gWindowWidth  = 800
@@ -14,6 +17,8 @@ func main() {
 
 	rl.SetTargetFPS(60)
 
+	sys.LoadTextureFromFile("example.png")
+
 	for !rl.WindowShouldClose() {
 
 		if rl.IsKeyDown(rl.KeyQ) {
@@ -23,6 +28,8 @@ func main() {
 		rl.BeginDrawing()
 
 		rl.ClearBackground(rl.RayWhite)
+
+		rl.DrawTexture(sys.TextureMap["example.png"], 10, 10, rl.White)
 
 		rl.DrawText("LUDUM DARE 45 GAME", 190, 200, 20, textColor)
 
