@@ -23,6 +23,8 @@ func main() {
 
 		if rl.IsKeyDown(rl.KeyQ) {
 			textColor = rl.Red
+		} else {
+			textColor = rl.Gray
 		}
 
 		rl.BeginDrawing()
