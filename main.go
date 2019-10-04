@@ -17,7 +17,7 @@ func main() {
 
 	rl.SetTargetFPS(60)
 
-	sys.LoadTextureFromFile("example.png")
+	sys.LoadDefaults()
 
 	for !rl.WindowShouldClose() {
 
@@ -29,7 +29,7 @@ func main() {
 
 		rl.ClearBackground(rl.RayWhite)
 
-		rl.DrawTexture(sys.TextureMap["example.png"], 10, 10, rl.White)
+		rl.DrawTexture(sys.GetTexture("example.png"), 10, 10, rl.White)
 
 		rl.DrawText("LUDUM DARE 45 GAME", 190, 200, 20, textColor)
 

@@ -8,12 +8,17 @@ import rl "github.com/gen2brain/raylib-go/raylib"
 // - audio loading
 // - game data loading
 
-var TextureMap map[string]rl.Texture2D
-var AudioMap map[string]rl.Sound
+var textureMap map[string]rl.Texture2D
+var audioMap map[string]rl.Sound
 
 func init() {
-	TextureMap = make(map[string]rl.Texture2D)
-	AudioMap = make(map[string]rl.Sound)
+	textureMap = make(map[string]rl.Texture2D)
+	audioMap = make(map[string]rl.Sound)
+}
+
+func LoadDefaults() {
+	// run this AFTER rl.InitWindow()
+	LoadTextureFromFile("missing_texture.png")
 }
 
 func LoadTextureFromFile(filename string) {
@@ -21,12 +26,21 @@ func LoadTextureFromFile(filename string) {
 	// this function MUST be run after rl.InitWindow() in the main game
 	img := rl.LoadImage("assets/images/" + filename)
 	texture := rl.LoadTextureFromImage(img)
-	TextureMap[filename] = texture
+	textureMap[filename] = texture
 }
 
 func LoadAudioFromFile(filename string) {
 	// always loads from assets/audio
 	// this function MUST be run after rl.InitWindow() in the main game
 	sound := rl.LoadSound("assets/audio/" + filename)
-	AudioMap[filename] = sound
+	audioMap[filename] = sound
+}
+
+func GetTexture(filename string) rl.Texture2D {
+	t, exists := textureMap[filename]
+	if exists {
+		return t
+	} else {
+		return textureMap["missing_texture.png"]
+	}
 }
