@@ -9,11 +9,13 @@ import rl "github.com/gen2brain/raylib-go/raylib"
 // - game data loading
 
 var textureMap map[string]rl.Texture2D
-var audioMap map[string]rl.Sound
+var soundMap map[string]rl.Sound
+var musicMap map[string]rl.Music
 
 func init() {
 	textureMap = make(map[string]rl.Texture2D)
-	audioMap = make(map[string]rl.Sound)
+	soundMap = make(map[string]rl.Sound)
+	musicMap = make(map[string]rl.Music)
 }
 
 func LoadDefaults() {
@@ -29,11 +31,18 @@ func LoadTextureFromFile(filename string) {
 	textureMap[filename] = texture
 }
 
-func LoadAudioFromFile(filename string) {
+func LoadSoundFromFile(filename string) {
 	// always loads from assets/audio
 	// this function MUST be run after rl.InitWindow() in the main game
 	sound := rl.LoadSound("assets/audio/" + filename)
-	audioMap[filename] = sound
+	soundMap[filename] = sound
+}
+
+func LoadMusicFromFile(filename string) {
+	// always loads from assets/audio
+	// this function MUST be run after rl.InitWindow() in the main game
+	music := rl.LoadMusicStream("assets/audio/" + filename)
+	musicMap[filename] = music
 }
 
 func GetTexture(filename string) rl.Texture2D {
@@ -45,11 +54,20 @@ func GetTexture(filename string) rl.Texture2D {
 	}
 }
 
-func GetAudio(filename string) rl.Sound {
-	t, exists := audioMap[filename]
+func GetSound(filename string) rl.Sound {
+	t, exists := soundMap[filename]
 	if exists {
 		return t
 	} else {
 		return rl.NewSound(0, 0, 0)
+	}
+}
+
+func GetMusic(filename string) rl.Music {
+	t, exists := musicMap[filename]
+	if exists {
+		return t
+	} else {
+		return musicMap["default.ogg"]
 	}
 }

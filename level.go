@@ -11,7 +11,8 @@ func loadLevel() {
 	sys.LoadTextureFromFile("example.png")
 
 	// load the audio assets
-	sys.LoadAudioFromFile("McCuckolds_Jingle_(Min).wav")
+	song := "mccuck.ogg"
+	sys.LoadMusicFromFile(song)
 
 	// player singleton
 	eng.PlayerCoSingleton = eng.PlayerCo{CurrentAccountValue: 0.0, GamePaused: true, ShowMarket: false}
@@ -25,7 +26,8 @@ func loadLevel() {
 	eng.TextCoMap[coID] = eng.TextCo{Text: "Go to work...", Color: rl.Black, Size: 20, OffsetX: 10, OffsetY: 5}
 	eng.OnClickCoMap[coID] = eng.OnClickCo{Disabled: true, OnClick: func(id uint16) {
 		eng.PlayerCoSingleton.CurrentAccountValue += 500
-		rl.PlaySound(sys.GetAudio("McCuckolds_Jingle_(Min).wav"))
+		rl.PlayMusicStream(sys.GetMusic(song))
+		rl.UpdateMusicStream(sys.GetMusic(song))
 		eng.EndDay()
 	}}
 
