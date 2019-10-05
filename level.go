@@ -89,9 +89,15 @@ func loadLevel() {
 	coID++
 
 	// Market Frame
-	eng.PositionCoMap[coID] = eng.PositionCo{X: 100, Y: 100, Width: 200, Height: 200}
+	eng.PositionCoMap[coID] = eng.PositionCo{X: 100, Y: 100, Width: 200, Height: 200, Z: 100}
 	eng.RenderCoMap[coID] = eng.RenderCo{Texture: "ui_frame.png", SourceRect: rl.NewRectangle(0, 0, 100, 100), Tint: rl.White, Visible: false}
 	eng.MarketUIFrameID = coID
+	coID++
+
+	// Portfolio Frame
+	eng.PositionCoMap[coID] = eng.PositionCo{X: 200, Y: 100, Width: 200, Height: 200, Z: 100}
+	eng.RenderCoMap[coID] = eng.RenderCo{Texture: "ui_frame.png", SourceRect: rl.NewRectangle(0, 0, 100, 100), Tint: rl.White, Visible: false}
+	eng.PortfolioUIFrameID = coID
 	coID++
 
 	// add entities for rendering stock data

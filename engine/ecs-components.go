@@ -26,6 +26,7 @@ type RenderCo struct {
 type PositionCo struct {
 	X      float32
 	Y      float32
+	Z      float32
 	Width  float32
 	Height float32
 }

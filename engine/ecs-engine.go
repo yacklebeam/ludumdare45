@@ -1,5 +1,11 @@
 package engine
 
+import (
+	"sort"
+
+	rl "github.com/gen2brain/raylib-go/raylib"
+)
+
 var RenderCoMap map[uint16]RenderCo
 var PositionCoMap map[uint16]PositionCo
 var OnClickCoMap map[uint16]OnClickCo
@@ -16,6 +22,19 @@ var SoundCoSingleton SoundCo
 
 var MarketStockCoList []uint16
 var PortfolioStockCoList []uint16
+
+var renderPipeline []renderable
+
+type renderable struct {
+	renderType uint8
+	text       string
+	texture    string
+	sourceRec  rl.Rectangle
+	position   rl.Rectangle
+	textSize   int32
+	color      rl.Color
+	zIndex     float32
+}
 
 func init() {
 	// init any maps here
@@ -48,6 +67,9 @@ func Tick(t float32) {
 	renderTextSystemTick(t)
 	//renderMarketStockTick(t)
 	//renderPortfolioStockTick(t)
+
+	// last!
+	renderPipelineTick(t)
 }
 
 func SetDisableOnClick(id uint16, isDisabled bool) {
@@ -62,4 +84,17 @@ func EndDay() {
 	SetDisableOnClick(StartDayButtonID, false)
 	SetDisableOnClick(GotoWorkButtonID, true)
 	CalendarCoSingleton.AccumulatedSec = 0
+}
+
+// renderPipeline sorting stuff
+type byZIndex []renderable
+
+func (a byZIndex) Len() int           { return len(a) }
+func (a byZIndex) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a byZIndex) Less(i, j int) bool { return a[i].zIndex < a[j].zIndex }
+
+func addToRenderPipeline(r renderable) {
+	// this is supposed to be performant
+	renderPipeline = append(renderPipeline, r)
+	sort.Sort(byZIndex(renderPipeline))
 }

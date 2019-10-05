@@ -11,9 +11,11 @@ func renderSystemTick(t float32) { // RenderCo, PositionCo
 		o, hasOnClick := OnClickCoMap[id]
 		if hasPosition && r.Visible {
 			if hasOnClick && o.Disabled {
-				rl.DrawTexturePro(sys.GetTexture(r.Texture), r.SourceRect, rl.NewRectangle(p.X, p.Y, p.Width, p.Height), rl.NewVector2(0, 0), 0, rl.Black)
+				//rl.DrawTexturePro(sys.GetTexture(r.Texture), r.SourceRect, rl.NewRectangle(p.X, p.Y, p.Width, p.Height), rl.NewVector2(0, 0), 0, rl.Black)
+				addToRenderPipeline(renderable{renderType: 0, texture: r.Texture, sourceRec: r.SourceRect, position: rl.NewRectangle(p.X, p.Y, p.Width, p.Height), color: rl.Black, zIndex: p.Z})
 			} else {
-				rl.DrawTexturePro(sys.GetTexture(r.Texture), r.SourceRect, rl.NewRectangle(p.X, p.Y, p.Width, p.Height), rl.NewVector2(0, 0), 0, r.Tint)
+				//rl.DrawTexturePro(sys.GetTexture(r.Texture), r.SourceRect, rl.NewRectangle(p.X, p.Y, p.Width, p.Height), rl.NewVector2(0, 0), 0, r.Tint)
+				addToRenderPipeline(renderable{renderType: 0, texture: r.Texture, sourceRec: r.SourceRect, position: rl.NewRectangle(p.X, p.Y, p.Width, p.Height), color: r.Tint, zIndex: p.Z})
 			}
 		}
 	}
@@ -26,7 +28,8 @@ func renderTextSystemTick(t float32) {
 		}
 		p, hasPosition := PositionCoMap[id]
 		if hasPosition {
-			rl.DrawText(t.Text, int32(p.X+t.OffsetX), int32(p.Y+t.OffsetY), t.Size, t.Color)
+			//rl.DrawText(t.Text, int32(p.X+t.OffsetX), int32(p.Y+t.OffsetY), t.Size, t.Color)
+			addToRenderPipeline(renderable{renderType: 1, text: t.Text, position: rl.NewRectangle(p.X+t.OffsetX, p.Y+t.OffsetY, 0, 0), textSize: t.Size, color: t.Color, zIndex: p.Z})
 		}
 	}
 }
@@ -135,4 +138,15 @@ func timerSystemTick(t float32) {
 }
 
 func audioStreamingTick(t float32) {
+}
+
+func renderPipelineTick(t float32) {
+	for _, r := range renderPipeline {
+		if r.renderType == 0 { // texture
+			rl.DrawTexturePro(sys.GetTexture(r.texture), r.sourceRec, rl.NewRectangle(r.position.X, r.position.Y, r.position.Width, r.position.Height), rl.NewVector2(0, 0), 0, r.color)
+		} else if r.renderType == 1 { // text
+			rl.DrawText(r.text, int32(r.position.X), int32(r.position.Y), r.textSize, r.color)
+		}
+	}
+	renderPipeline = nil
 }
