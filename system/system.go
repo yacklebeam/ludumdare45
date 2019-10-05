@@ -21,6 +21,7 @@ func init() {
 func LoadDefaults() {
 	// run this AFTER rl.InitWindow()
 	LoadTextureFromFile("missing_texture.png")
+	LoadMusicFromFile("silence.ogg")
 }
 
 func LoadTextureFromFile(filename string) {
@@ -68,7 +69,6 @@ func GetMusic(filename string) rl.Music {
 	if exists {
 		return t
 	} else {
-		LoadMusicFromFile("assets/audio/silence.ogg")
-		return musicMap[filename]
+		return musicMap["silence.ogg"]
 	}
 }
