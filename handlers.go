@@ -41,18 +41,10 @@ func clickGotoWork(id uint16) {
 }
 
 func clickToggleMarket(id uint16) {
-	// audio
-	// player
 	eng.PlayerCoSingleton.ShowMarket = !eng.PlayerCoSingleton.ShowMarket
-	if eng.PlayerCoSingleton.ShowMarket {
-		eng.PlayerCoSingleton.ShowPortfolio = false
-	}
+
 }
 
 func clickTogglePortfolio(id uint16) {
-	// player
 	eng.PlayerCoSingleton.ShowPortfolio = !eng.PlayerCoSingleton.ShowPortfolio
-	if eng.PlayerCoSingleton.ShowPortfolio {
-		eng.PlayerCoSingleton.ShowMarket = false
-	}
 }

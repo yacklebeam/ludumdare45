@@ -35,11 +35,12 @@ func renderTextSystemTick(t float32) {
 }
 
 func onClickSystemTick(t float32) {
+	mPos := rl.GetMousePosition()
+	isPressed := rl.IsMouseButtonPressed(rl.MouseLeftButton)
 	for id, o := range OnClickCoMap {
 		p, hasPosition := PositionCoMap[id]
 		if hasPosition {
-			mPos := rl.GetMousePosition()
-			if !o.Disabled && rl.IsMouseButtonPressed(rl.MouseLeftButton) && rl.CheckCollisionPointRec(mPos, rl.NewRectangle(p.X, p.Y, p.Width, p.Height)) {
+			if !o.Disabled && isPressed && rl.CheckCollisionPointRec(mPos, rl.NewRectangle(p.X, p.Y, p.Width, p.Height)) {
 				o.OnClick(id)
 			}
 		}

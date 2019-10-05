@@ -6,6 +6,9 @@ import (
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
+// CoID ...
+var CoID uint16
+
 // RenderCoMap ...
 var RenderCoMap map[uint16]RenderCo
 
@@ -59,6 +62,7 @@ type renderable struct {
 }
 
 func init() {
+	CoID = 0
 	// init any maps here
 	RenderCoMap = make(map[uint16]RenderCo)
 	PositionCoMap = make(map[uint16]PositionCo)
