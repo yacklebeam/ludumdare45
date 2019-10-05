@@ -12,7 +12,7 @@ func loadStocks() {
 	// these IDs correspond to stock IDs, not
 	eng.StockDataLookupCoMap[0] = eng.StockDataLookupCo{Name: "ABC", CurrentPrice: 100.0, SharesOut: 100, PlayerShareCount: 0, Available: true}
 	eng.StockDataLookupCoMap[1] = eng.StockDataLookupCo{Name: "GOOG", CurrentPrice: 60.0, SharesOut: 100, PlayerShareCount: 0, Available: true}
-	eng.StockDataLookupCoMap[2] = eng.StockDataLookupCo{Name: "MSOFT", CurrentPrice: 200.0, SharesOut: 100, PlayerShareCount: 0, Available: true}
+	eng.StockDataLookupCoMap[2] = eng.StockDataLookupCo{Name: "MSFT", CurrentPrice: 200.0, SharesOut: 100, PlayerShareCount: 0, Available: true}
 	eng.StockDataLookupCoMap[3] = eng.StockDataLookupCo{Name: "ABC", CurrentPrice: 100.0, SharesOut: 100, PlayerShareCount: 0, Available: false}
 	eng.StockDataLookupCoMap[4] = eng.StockDataLookupCo{Name: "ABC", CurrentPrice: 100.0, SharesOut: 100, PlayerShareCount: 0, Available: false}
 	eng.StockDataLookupCoMap[5] = eng.StockDataLookupCo{Name: "ABC", CurrentPrice: 100.0, SharesOut: 100, PlayerShareCount: 0, Available: false}
@@ -23,8 +23,8 @@ func loadLevel() {
 	var coID uint16 = 0
 	sys.LoadTextureFromFile("example.png")
 	sys.LoadTextureFromFile("ui_frame.png")
-	sys.LoadSoundFromFile("typewriter.ogg")
 	sys.LoadSoundFromFile("mccuck.ogg")
+	sys.LoadMusicFromFile("typewriter.ogg")
 
 	loadStocks()
 

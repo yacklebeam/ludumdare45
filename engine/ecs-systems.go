@@ -137,7 +137,10 @@ func timerSystemTick(t float32) {
 	}
 }
 
-func audioStreamingTick(t float32) {
+func musicStreamingTick(t float32) {
+	if MusicCoSingleton.IsPlaying {
+		rl.UpdateMusicStream(MusicCoSingleton.Music)
+	}
 }
 
 func renderPipelineTick(t float32) {

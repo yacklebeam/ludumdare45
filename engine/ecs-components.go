@@ -76,7 +76,7 @@ type TimerCo struct {
 	AccumulatedSec float32
 }
 
-type SoundCo struct {
+type MusicCo struct {
 	IsPlaying bool
-	Sound     rl.Sound
+	Music     rl.Music
 }

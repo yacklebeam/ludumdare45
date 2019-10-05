@@ -10,10 +10,12 @@ import rl "github.com/gen2brain/raylib-go/raylib"
 
 var textureMap map[string]rl.Texture2D
 var soundMap map[string]rl.Sound
+var musicMap map[string]rl.Music
 
 func init() {
 	textureMap = make(map[string]rl.Texture2D)
 	soundMap = make(map[string]rl.Sound)
+	musicMap = make(map[string]rl.Music)
 }
 
 func LoadDefaults() {
@@ -36,6 +38,13 @@ func LoadSoundFromFile(filename string) {
 	soundMap[filename] = sound
 }
 
+func LoadMusicFromFile(filename string) {
+	// always loads from assets/audio
+	// this function MUST be run after rl.InitWindow() in the main game
+	music := rl.LoadMusicStream("assets/audio/" + filename)
+	musicMap[filename] = music
+}
+
 func GetTexture(filename string) rl.Texture2D {
 	t, exists := textureMap[filename]
 	if exists {
@@ -51,5 +60,15 @@ func GetSound(filename string) rl.Sound {
 		return t
 	} else {
 		return rl.NewSound(0, 0, 0)
+	}
+}
+
+func GetMusic(filename string) rl.Music {
+	t, exists := musicMap[filename]
+	if exists {
+		return t
+	} else {
+		LoadMusicFromFile("assets/audio/silence.ogg")
+		return musicMap[filename]
 	}
 }
