@@ -26,8 +26,10 @@ func clickStartDay(id uint16) {
 }
 
 func clickGotoWork(id uint16) {
+	gotoWorkSoundFile := "mccuck.ogg"
 	eng.PlayerCoSingleton.CurrentAccountValue += 500
-	eng.SoundCoSingleton.Sound = sys.GetSound("mccuck.ogg")
+	sys.LoadSoundFromFile(gotoWorkSoundFile)
+	eng.SoundCoSingleton.Sound = sys.GetSound(gotoWorkSoundFile)
 	rl.PlaySound(eng.SoundCoSingleton.Sound)
 	eng.EndDay()
 }

@@ -46,7 +46,6 @@ func GetTexture(filename string) rl.Texture2D {
 }
 
 func GetSound(filename string) rl.Sound {
-	LoadSoundFromFile(filename)
 	t, exists := soundMap[filename]
 	if exists {
 		return t
