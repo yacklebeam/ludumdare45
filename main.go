@@ -2,6 +2,7 @@ package main
 
 import (
 	rl "github.com/gen2brain/raylib-go/raylib"
+	eng "github.com/yacklebeam/ludumdare45/engine"
 	sys "github.com/yacklebeam/ludumdare45/system"
 )
 
@@ -12,27 +13,25 @@ const (
 
 func main() {
 	rl.InitWindow(gWindowWidth, gWindowHeight, "Ludum Dare #45 Game")
-
-	textColor := rl.Gray
-
-	rl.SetTargetFPS(60)
-
 	sys.LoadDefaults()
 
+	sys.LoadTextureFromFile("example.png")
+
+	// dummy load level for now
+	eng.PlayerCoSingleton = eng.PlayerCo{CurrentAccountValue: 0.0}
+
+	eng.RenderCoMap[0] = eng.RenderCo{Texture: "example.png", SourceRect: rl.NewRectangle(0, 0, 30, 30), Tint: rl.White}
+	eng.PositionCoMap[0] = eng.PositionCo{X: 10, Y: 200, Width: 200, Height: 30}
+	eng.TextCoMap[0] = eng.TextCo{Text: "Go to work...", Color: rl.Black, Size: 20, OffsetX: 10, OffsetY: 5}
+	eng.OnClickCoMap[0] = eng.OnClickCo{OnClick: func() {
+		eng.PlayerCoSingleton.CurrentAccountValue += 5
+	}}
+
 	for !rl.WindowShouldClose() {
-
-		if rl.IsKeyDown(rl.KeyQ) {
-			textColor = rl.Red
-		}
-
+		t := rl.GetFrameTime()
 		rl.BeginDrawing()
-
 		rl.ClearBackground(rl.RayWhite)
-
-		rl.DrawTexture(sys.GetTexture("example.png"), 10, 10, rl.White)
-
-		rl.DrawText("LUDUM DARE 45 GAME", 190, 200, 20, textColor)
-
+		eng.Tick(t)
 		rl.EndDrawing()
 	}
 

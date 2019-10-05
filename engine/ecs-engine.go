@@ -1,15 +1,23 @@
 package engine
 
-var renderCoMap map[uint16]renderCo
-var positionCoMap map[uint16]positionCo
-var playerCoSingleton playerCo
+var RenderCoMap map[uint16]RenderCo
+var PositionCoMap map[uint16]PositionCo
+var OnClickCoMap map[uint16]OnClickCo
+var TextCoMap map[uint16]TextCo
+
+var PlayerCoSingleton PlayerCo
 
 func init() {
 	// init any maps here
-	renderCoMap = make(map[uint16]renderCo)
-	positionCoMap = make(map[uint16]positionCo)
+	RenderCoMap = make(map[uint16]RenderCo)
+	PositionCoMap = make(map[uint16]PositionCo)
+	OnClickCoMap = make(map[uint16]OnClickCo)
+	TextCoMap = make(map[uint16]TextCo)
 }
 
-func tick(t float32) {
+func Tick(t float32) {
+	onClickSystemTick(t)
 	renderSystemTick(t)
+	renderPlayerSystemTick(t)
+	renderTextSystem(t)
 }

@@ -4,19 +4,31 @@ import (
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
-type playerCo struct {
-	currentAccountValue int64
+type PlayerCo struct {
+	CurrentAccountValue int64
 }
 
-type renderCo struct {
-	texture    string
-	tint       rl.Color
-	sourceRect rl.Rectangle
-	width      float32
-	height     float32
+type RenderCo struct {
+	Texture    string
+	Tint       rl.Color
+	SourceRect rl.Rectangle
 }
 
-type positionCo struct {
-	x float32
-	y float32
+type PositionCo struct {
+	X      float32
+	Y      float32
+	Width  float32
+	Height float32
+}
+
+type TextCo struct {
+	Text    string
+	Size    int32
+	Color   rl.Color
+	OffsetX float32
+	OffsetY float32
+}
+
+type OnClickCo struct {
+	OnClick func()
 }
