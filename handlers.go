@@ -27,14 +27,18 @@ func clickStartDay(id uint16) {
 
 func clickGotoWork(id uint16) {
 	gotoWorkSoundFile := "mccuck.ogg"
-	eng.PlayerCoSingleton.CurrentAccountValue += 500
 	sys.LoadSoundFromFile(gotoWorkSoundFile)
 	eng.SoundCoSingleton.Sound = sys.GetSound(gotoWorkSoundFile)
 	rl.PlaySound(eng.SoundCoSingleton.Sound)
+	eng.PlayerCoSingleton.CurrentAccountValue += 500
 	eng.EndDay()
 }
 
 func clickToggleMarket(id uint16) {
+	toggleMarketSoundFile := "typewriter.ogg"
+	sys.LoadSoundFromFile(toggleMarketSoundFile)
+	eng.SoundCoSingleton.Sound = sys.GetSound(toggleMarketSoundFile)
+	rl.PlaySound(eng.SoundCoSingleton.Sound)
 	eng.PlayerCoSingleton.ShowMarket = !eng.PlayerCoSingleton.ShowMarket
 	if eng.PlayerCoSingleton.ShowMarket {
 		eng.PlayerCoSingleton.ShowPortfolio = false
