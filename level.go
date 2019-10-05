@@ -12,7 +12,6 @@ func loadLevel() {
 
 	// load the audio assets
 	sys.LoadAudioFromFile("McCuckolds_Jingle_(Min).wav")
-	workMusic := sys.GetAudio("McCuckolds_Jingle_(Min).wav")
 
 	// player singleton
 	eng.PlayerCoSingleton = eng.PlayerCo{CurrentAccountValue: 0.0, GamePaused: true, ShowMarket: false}
@@ -26,11 +25,9 @@ func loadLevel() {
 	eng.TextCoMap[coID] = eng.TextCo{Text: "Go to work...", Color: rl.Black, Size: 20, OffsetX: 10, OffsetY: 5}
 	eng.OnClickCoMap[coID] = eng.OnClickCo{Disabled: true, OnClick: func(id uint16) {
 		eng.PlayerCoSingleton.CurrentAccountValue += 500
-		rl.PlaySound(workMusic)
+		rl.PlaySound(sys.GetAudio("McCuckolds_Jingle_(Min).wav"))
 		eng.EndDay()
 	}}
-
-	rl.UnloadSound(workMusic)
 
 	coID = eng.StartDayButtonID
 
