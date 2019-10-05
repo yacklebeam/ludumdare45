@@ -24,7 +24,7 @@ func loadLevel() {
 	sys.LoadTextureFromFile("example.png")
 	sys.LoadTextureFromFile("ui_frame.png")
 	sys.LoadSoundFromFile("mccuck.ogg")
-	sys.LoadMusicFromFile("typewriter.ogg")
+	sys.LoadMusicFromFile("wind.ogg")
 
 	loadStocks()
 
@@ -33,7 +33,7 @@ func loadLevel() {
 	eng.CalendarCoSingleton = eng.CalendarCo{ElapsedDayCount: 0, AccumulatedSec: 0}
 
 	// music singleton
-	eng.MusicCoSingleton = eng.MusicCo{Music: sys.GetMusic("typewriter.ogg"), Volume: 5.0}
+	eng.MusicCoSingleton = eng.MusicCo{Music: sys.GetMusic("wind.ogg"), Volume: 5.0}
 
 	// click to work button
 	coID = eng.GotoWorkButtonID

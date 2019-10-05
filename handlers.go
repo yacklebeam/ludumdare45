@@ -21,7 +21,7 @@ func clickStartDay(id uint16) {
 		rl.StopMusicStream(eng.MusicCoSingleton.Music)
 		eng.MusicCoSingleton.IsPlaying = false
 	}
-	rl.SetMusicVolume(eng.MusicCoSingleton.Music, eng.MusicCoSingleton.Volume)
+	//rl.SetMusicVolume(eng.MusicCoSingleton.Music, eng.MusicCoSingleton.Volume)
 	rl.PlayMusicStream(eng.MusicCoSingleton.Music)
 	eng.MusicCoSingleton.IsPlaying = true
 	// player
