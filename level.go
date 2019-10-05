@@ -104,18 +104,24 @@ func loadLevel() {
 	coID++
 
 	// add entities for rendering stock data
-	/*for stockID, stockData := range eng.StockDataLookupCoMap {
+	for stockID, stockData := range eng.StockDataLookupCoMap {
+		stockElem := eng.StockUIElem{}
 		eng.MarketStockCoMap[coID] = eng.MarketStockCo{ID: stockID}
 		eng.PositionCoMap[coID] = eng.PositionCo{X: 0, Y: 0}
 		eng.TextCoMap[coID] = eng.TextCo{Text: stockData.Name, Color: rl.Black, Size: 15, OffsetX: 0, OffsetY: 0}
+		stockElem.TopElemID = coID
 		coID++
 		eng.MarketStockCoMap[coID] = eng.MarketStockCo{ID: stockID}
 		eng.PositionCoMap[coID] = eng.PositionCo{X: 0, Y: 15}
 		eng.TextCoMap[coID] = eng.TextCo{Text: "Price", Color: rl.Black, Size: 15, OffsetX: 0, OffsetY: 0}
+		stockElem.MidElemID = coID
 		coID++
 		eng.MarketStockCoMap[coID] = eng.MarketStockCo{ID: stockID}
 		eng.PositionCoMap[coID] = eng.PositionCo{X: 0, Y: 30}
 		eng.TextCoMap[coID] = eng.TextCo{Text: "Shares Out", Color: rl.Black, Size: 15, OffsetX: 0, OffsetY: 0}
+		stockElem.BotElemID = coID
 		coID++
-	}*/
+
+		eng.MarketUIList = append(eng.MarketUIList, stockElem)
+	}
 }
