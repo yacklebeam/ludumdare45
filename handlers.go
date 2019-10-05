@@ -42,13 +42,6 @@ func clickGotoWork(id uint16) {
 
 func clickToggleMarket(id uint16) {
 	// audio
-	/*if eng.SoundCoSingleton.IsPlaying {
-		rl.StopSound(eng.SoundCoSingleton.Sound)
-		eng.SoundCoSingleton.IsPlaying = false
-	}
-	eng.SoundCoSingleton.Sound = sys.GetSound("typewriter.ogg")
-	eng.SoundCoSingleton.IsPlaying = true
-	rl.PlaySound(eng.SoundCoSingleton.Sound)*/
 	// player
 	eng.PlayerCoSingleton.ShowMarket = !eng.PlayerCoSingleton.ShowMarket
 	if eng.PlayerCoSingleton.ShowMarket {
