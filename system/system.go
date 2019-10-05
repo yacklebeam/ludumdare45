@@ -44,3 +44,12 @@ func GetTexture(filename string) rl.Texture2D {
 		return textureMap["missing_texture.png"]
 	}
 }
+
+func GetAudio(filename string) rl.Sound {
+	t, exists := audioMap[filename]
+	if exists {
+		return t
+	} else {
+		return rl.NewSound(0, 0, 0)
+	}
+}
