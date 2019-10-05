@@ -19,6 +19,7 @@ func clickMarketStock(id uint16) {
 }
 
 func clickStartDay(id uint16) {
+	// player
 	eng.PlayerCoSingleton.GamePaused = false
 	eng.PlayerCoSingleton.CurrentAccountValue -= 100
 	eng.SetDisableOnClick(id, true)
@@ -60,6 +61,7 @@ func clickToggleMarket(id uint16) {
 }
 
 func clickTogglePortfolio(id uint16) {
+	// player
 	eng.PlayerCoSingleton.ShowPortfolio = !eng.PlayerCoSingleton.ShowPortfolio
 	if eng.PlayerCoSingleton.ShowPortfolio {
 		eng.PlayerCoSingleton.ShowMarket = false
