@@ -8,6 +8,14 @@ type PlayerCo struct {
 	CurrentAccountValue int64
 }
 
+type PlayerPortfolioCo struct {
+	CurrentStocks []StockCo
+}
+
+type MarketCo struct {
+	AvailableStocks []StockCo
+}
+
 type RenderCo struct {
 	Texture    string
 	Tint       rl.Color
@@ -31,4 +39,22 @@ type TextCo struct {
 
 type OnClickCo struct {
 	OnClick func()
+}
+
+type PlayerStockCo struct {
+	id        uint32
+	numShares int32
+}
+
+type StockCo struct {
+	id           uint32
+	name         string
+	currentValue float32
+	sharesOut    int32
+}
+
+type TimerCo struct {
+	OnTick        func()
+	TickLength    float32
+	AccumulatedMS float32
 }

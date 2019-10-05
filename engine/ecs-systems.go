@@ -21,7 +21,7 @@ func renderPlayerSystemTick(t float32) {
 	rl.DrawText(valueStr, 10, 10, 20, rl.Black)
 }
 
-func renderTextSystem(t float32) {
+func renderTextSystemTick(t float32) {
 	for id, t := range TextCoMap {
 		p, hasPosition := PositionCoMap[id]
 		if hasPosition {
@@ -39,5 +39,17 @@ func onClickSystemTick(t float32) {
 				o.OnClick()
 			}
 		}
+	}
+}
+
+func timerSystemTick(t float32) {
+	// see here for example of updating a component within a map
+	for id, tc := range TimerCoMap {
+		tc.AccumulatedMS += t
+		if tc.AccumulatedMS > tc.TickLength {
+			tc.AccumulatedMS -= tc.TickLength
+			tc.OnTick()
+		}
+		TimerCoMap[id] = tc
 	}
 }
