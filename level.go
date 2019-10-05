@@ -13,10 +13,6 @@ func loadStocks() {
 	eng.StockDataLookupCoMap[0] = eng.StockDataLookupCo{Name: "ABC", CurrentPrice: 100.0, SharesOut: 100, PlayerShareCount: 0, Available: true}
 	eng.StockDataLookupCoMap[1] = eng.StockDataLookupCo{Name: "GOOG", CurrentPrice: 60.0, SharesOut: 100, PlayerShareCount: 0, Available: true}
 	eng.StockDataLookupCoMap[2] = eng.StockDataLookupCo{Name: "MSFT", CurrentPrice: 200.0, SharesOut: 25, PlayerShareCount: 0, Available: true}
-	eng.StockDataLookupCoMap[3] = eng.StockDataLookupCo{Name: "ABC", CurrentPrice: 100.0, SharesOut: 100, PlayerShareCount: 0, Available: false}
-	eng.StockDataLookupCoMap[4] = eng.StockDataLookupCo{Name: "ABC", CurrentPrice: 100.0, SharesOut: 100, PlayerShareCount: 0, Available: false}
-	eng.StockDataLookupCoMap[5] = eng.StockDataLookupCo{Name: "ABC", CurrentPrice: 100.0, SharesOut: 100, PlayerShareCount: 0, Available: false}
-	eng.StockDataLookupCoMap[6] = eng.StockDataLookupCo{Name: "ABC", CurrentPrice: 100.0, SharesOut: 100, PlayerShareCount: 0, Available: false}
 }
 
 func loadLevel() {
@@ -107,12 +103,12 @@ func loadLevel() {
 	for stockID, stockData := range eng.StockDataLookupCoMap {
 		stockElem := eng.StockUIElem{}
 		eng.MarketStockCoMap[coID] = eng.MarketStockCo{ID: stockID}
-		eng.PositionCoMap[coID] = eng.PositionCo{X: 0, Y: 0}
+		eng.PositionCoMap[coID] = eng.PositionCo{X: 0, Y: 0, Z: 101}
 		eng.TextCoMap[coID] = eng.TextCo{Text: stockData.Name, Color: rl.Black, Size: 15, OffsetX: 0, OffsetY: 0}
 		stockElem.TopElemID = coID
 		coID++
 		eng.MarketStockCoMap[coID] = eng.MarketStockCo{ID: stockID}
-		eng.PositionCoMap[coID] = eng.PositionCo{X: 0, Y: 15}
+		eng.PositionCoMap[coID] = eng.PositionCo{X: 0, Y: 15, Z: 101}
 		eng.TextCoMap[coID] = eng.TextCo{RawText: "Price: $%v", Color: rl.Black, Size: 15, OffsetX: 0, OffsetY: 0, Visible: false, OnUpdate: func(id uint16) {
 			tmp := eng.TextCoMap[id]
 			stock, exists := eng.MarketStockCoMap[id]
@@ -125,7 +121,7 @@ func loadLevel() {
 		stockElem.MidElemID = coID
 		coID++
 		eng.MarketStockCoMap[coID] = eng.MarketStockCo{ID: stockID}
-		eng.PositionCoMap[coID] = eng.PositionCo{X: 0, Y: 30}
+		eng.PositionCoMap[coID] = eng.PositionCo{X: 0, Y: 30, Z: 101}
 		eng.TextCoMap[coID] = eng.TextCo{RawText: "Shares Out: %v", Color: rl.Black, Size: 15, OffsetX: 0, OffsetY: 0, Visible: false, OnUpdate: func(id uint16) {
 			tmp := eng.TextCoMap[id]
 			stock, exists := eng.MarketStockCoMap[id]

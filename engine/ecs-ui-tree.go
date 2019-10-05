@@ -1,10 +1,8 @@
 package engine
 
-// Market Pane
 var MarketUIFrameID uint16
 var MarketUIList []StockUIElem
 
-// Portfolio Pane
 var PortfolioUIFrameID uint16
 var PortfolioUIList []StockUIElem
 
@@ -19,16 +17,30 @@ func uiTreeTick(t float32) {
 	if exists {
 		if PlayerCoSingleton.ShowMarket {
 			co.Visible = true
-			for _, stock := range MarketUIList {
+			for index, stock := range MarketUIList {
 				e := TextCoMap[stock.TopElemID]
 				e.Visible = true
 				TextCoMap[stock.TopElemID] = e
+				p := PositionCoMap[stock.TopElemID]
+				p.Y = float32(105 + index*60)
+				p.X = float32(105)
+				PositionCoMap[stock.TopElemID] = p
+
 				e = TextCoMap[stock.MidElemID]
 				e.Visible = true
-				TextCoMap[stock.TopElemID] = e
+				TextCoMap[stock.MidElemID] = e
+				p = PositionCoMap[stock.MidElemID]
+				p.Y = float32(120 + index*60)
+				p.X = float32(105)
+				PositionCoMap[stock.MidElemID] = p
+
 				e = TextCoMap[stock.BotElemID]
 				e.Visible = true
-				TextCoMap[stock.TopElemID] = e
+				TextCoMap[stock.BotElemID] = e
+				p = PositionCoMap[stock.BotElemID]
+				p.Y = float32(135 + index*60)
+				p.X = float32(105)
+				PositionCoMap[stock.BotElemID] = p
 			}
 		} else {
 			co.Visible = false
@@ -38,10 +50,10 @@ func uiTreeTick(t float32) {
 				TextCoMap[stock.TopElemID] = e
 				e = TextCoMap[stock.MidElemID]
 				e.Visible = false
-				TextCoMap[stock.TopElemID] = e
+				TextCoMap[stock.MidElemID] = e
 				e = TextCoMap[stock.BotElemID]
 				e.Visible = false
-				TextCoMap[stock.TopElemID] = e
+				TextCoMap[stock.BotElemID] = e
 			}
 		}
 		RenderCoMap[MarketUIFrameID] = co
