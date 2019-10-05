@@ -27,7 +27,7 @@ func renderTextSystemTick(t float32) {
 			t.OnUpdate(id)
 		}
 		p, hasPosition := PositionCoMap[id]
-		if hasPosition {
+		if hasPosition && t.Visible {
 			//rl.DrawText(t.Text, int32(p.X+t.OffsetX), int32(p.Y+t.OffsetY), t.Size, t.Color)
 			addToRenderPipeline(renderable{renderType: 1, text: t.Text, position: rl.NewRectangle(p.X+t.OffsetX, p.Y+t.OffsetY, 0, 0), textSize: t.Size, color: t.Color, zIndex: p.Z})
 		}

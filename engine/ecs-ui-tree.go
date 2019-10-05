@@ -19,11 +19,30 @@ func uiTreeTick(t float32) {
 	if exists {
 		if PlayerCoSingleton.ShowMarket {
 			co.Visible = true
-			//for index, stock := range MarketUIList {
-
-			//}
+			for _, stock := range MarketUIList {
+				e := TextCoMap[stock.TopElemID]
+				e.Visible = true
+				TextCoMap[stock.TopElemID] = e
+				e = TextCoMap[stock.MidElemID]
+				e.Visible = true
+				TextCoMap[stock.TopElemID] = e
+				e = TextCoMap[stock.BotElemID]
+				e.Visible = true
+				TextCoMap[stock.TopElemID] = e
+			}
 		} else {
 			co.Visible = false
+			for _, stock := range MarketUIList {
+				e := TextCoMap[stock.TopElemID]
+				e.Visible = false
+				TextCoMap[stock.TopElemID] = e
+				e = TextCoMap[stock.MidElemID]
+				e.Visible = false
+				TextCoMap[stock.TopElemID] = e
+				e = TextCoMap[stock.BotElemID]
+				e.Visible = false
+				TextCoMap[stock.TopElemID] = e
+			}
 		}
 		RenderCoMap[MarketUIFrameID] = co
 	}

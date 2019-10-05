@@ -38,6 +38,7 @@ type TextCo struct {
 	Color    rl.Color
 	OffsetX  float32
 	OffsetY  float32
+	Visible  bool
 	OnUpdate func(uint16)
 }
 
