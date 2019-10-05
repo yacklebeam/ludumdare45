@@ -23,8 +23,8 @@ func loadLevel() {
 	var coID uint16 = 0
 	sys.LoadTextureFromFile("example.png")
 	sys.LoadTextureFromFile("ui_frame.png")
-	sys.LoadSoundFromFile("typewriter.ogg")
 	sys.LoadSoundFromFile("mccuck.ogg")
+	sys.LoadMusicFromFile("typewriter.ogg")
 
 	loadStocks()
 

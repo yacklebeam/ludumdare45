@@ -12,7 +12,7 @@ var PortfolioStockCoMap map[uint16]PortfolioStockCo
 
 var PlayerCoSingleton PlayerCo
 var CalendarCoSingleton CalendarCo
-var SoundCoSingleton SoundCo
+var MusicCoSingleton MusicCo
 
 var MarketStockCoList []uint16
 var PortfolioStockCoList []uint16
@@ -46,6 +46,7 @@ func Tick(t float32) {
 	onClickSystemTick(t)
 	renderSystemTick(t)
 	renderTextSystemTick(t)
+	musicStreamingTick(t)
 	//renderMarketStockTick(t)
 	//renderPortfolioStockTick(t)
 }
