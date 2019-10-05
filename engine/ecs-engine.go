@@ -5,6 +5,7 @@ var PositionCoMap map[uint16]PositionCo
 var OnClickCoMap map[uint16]OnClickCo
 var TextCoMap map[uint16]TextCo
 var TimerCoMap map[uint16]TimerCo
+var MarketStockCoMap map[uint16]MarketStockCo
 
 var PlayerCoSingleton PlayerCo
 var CalendarCoSingleton CalendarCo
@@ -16,6 +17,7 @@ func init() {
 	OnClickCoMap = make(map[uint16]OnClickCo)
 	TextCoMap = make(map[uint16]TextCo)
 	TimerCoMap = make(map[uint16]TimerCo)
+	MarketStockCoMap = make(map[uint16]MarketStockCo)
 }
 
 const (

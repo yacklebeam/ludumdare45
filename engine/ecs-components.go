@@ -7,19 +7,12 @@ import (
 type PlayerCo struct {
 	CurrentAccountValue int64
 	GamePaused          bool
+	ShowMarket          bool
 }
 
 type CalendarCo struct {
 	ElapsedDayCount int64
 	AccumulatedSec  float32
-}
-
-type PlayerPortfolioCo struct {
-	CurrentStocks []StockCo
-}
-
-type MarketCo struct {
-	AvailableStocks []StockCo
 }
 
 type RenderCo struct {
@@ -53,11 +46,15 @@ type PlayerStockCo struct {
 	numShares int32
 }
 
-type StockCo struct {
-	id           uint32
-	name         string
-	currentValue float32
-	sharesOut    int32
+type MarketStockCo struct {
+	Name         string
+	CurrentValue float32
+	SharesOut    int32
+}
+
+type PortfolioStockCo struct {
+	Name         string
+	CurrentValue float32
 }
 
 type TimerCo struct {

@@ -11,7 +11,7 @@ func loadLevel() {
 	sys.LoadTextureFromFile("example.png")
 
 	// player singleton
-	eng.PlayerCoSingleton = eng.PlayerCo{CurrentAccountValue: 0.0, GamePaused: true}
+	eng.PlayerCoSingleton = eng.PlayerCo{CurrentAccountValue: 0.0, GamePaused: true, ShowMarket: false}
 	eng.CalendarCoSingleton = eng.CalendarCo{ElapsedDayCount: 0, AccumulatedSec: 0}
 
 	// click to work button
@@ -40,4 +40,9 @@ func loadLevel() {
 	}}
 
 	coID = eng.MaxReservedID
+
+	// load starting stocks
+	//eng.MarketStockCoMap[coID] = eng.MarketStockCo{Name: "BANANA", CurrentValue: 100.0, SharesOut: 100}
+	//eng.PositionCoMap[coID] = eng.PositionCo{X: 10, Y: 300, Width: 200, Height: 30}
+	//coID++
 }
