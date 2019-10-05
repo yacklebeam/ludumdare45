@@ -19,8 +19,8 @@ func loadLevel() {
 	var coID uint16 = 0
 	sys.LoadTextureFromFile("example.png")
 	sys.LoadTextureFromFile("ui_frame.png")
-	sys.LoadSoundFromFile("mccuck.ogg")
-	sys.LoadMusicFromFile("wind.ogg")
+	//sys.LoadSoundFromFile("mccuck.ogg")
+	//sys.LoadMusicFromFile("wind.ogg")
 
 	loadStocks()
 
@@ -134,6 +134,12 @@ func loadLevel() {
 		stockElem.BotElemID = coID
 		coID++
 
+		eng.PositionCoMap[coID] = eng.PositionCo{X: 0, Y: 30, Z: 101, Width: 100, Height: 50}
+		eng.OnClickCoMap[coID] = eng.OnClickCo{Disabled: true, OnClick: func(id uint16) {
+			fmt.Printf("Clicked stock at id %v\n", id)
+		}}
+		stockElem.SelfElemID = coID
+		coID++
 		eng.MarketUIList = append(eng.MarketUIList, stockElem)
 	}
 }

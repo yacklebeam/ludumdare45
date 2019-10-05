@@ -92,7 +92,7 @@ func Tick(t float32) {
 	onClickSystemTick(t)
 	renderSystemTick(t)
 	renderTextSystemTick(t)
-	musicStreamingTick(t)
+	//musicStreamingTick(t)
 	//renderMarketStockTick(t)
 	//renderPortfolioStockTick(t)
 

@@ -14,9 +14,10 @@ var PortfolioUIList []StockUIElem
 
 // StockUIElem ...
 type StockUIElem struct {
-	TopElemID uint16
-	MidElemID uint16
-	BotElemID uint16
+	TopElemID  uint16
+	MidElemID  uint16
+	BotElemID  uint16
+	SelfElemID uint16
 }
 
 func uiTreeTick(t float32) {
@@ -48,6 +49,14 @@ func uiTreeTick(t float32) {
 				p.Y = float32(135 + index*60)
 				p.X = float32(105)
 				PositionCoMap[stock.BotElemID] = p
+
+				p = PositionCoMap[stock.SelfElemID]
+				p.Y = float32(105 + index*60)
+				p.X = float32(105)
+				PositionCoMap[stock.BotElemID] = p
+				o := OnClickCoMap[stock.SelfElemID]
+				o.Disabled = false
+				OnClickCoMap[stock.SelfElemID] = o
 			}
 		} else {
 			co.Visible = false
@@ -61,6 +70,9 @@ func uiTreeTick(t float32) {
 				e = TextCoMap[stock.BotElemID]
 				e.Visible = false
 				TextCoMap[stock.BotElemID] = e
+				o := OnClickCoMap[stock.SelfElemID]
+				o.Disabled = true
+				OnClickCoMap[stock.SelfElemID] = o
 			}
 		}
 		RenderCoMap[MarketUIFrameID] = co
