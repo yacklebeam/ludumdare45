@@ -10,6 +10,8 @@ var StockDataLookupCoMap map[uint16]StockDataLookupCo
 var MarketStockCoMap map[uint16]MarketStockCo
 var PortfolioStockCoMap map[uint16]PortfolioStockCo
 
+var MusicCoMap map[uint16]MusicCo
+
 var PlayerCoSingleton PlayerCo
 var CalendarCoSingleton CalendarCo
 var MusicCoSingleton MusicCo
@@ -25,6 +27,7 @@ func init() {
 	TextCoMap = make(map[uint16]TextCo)
 	TimerCoMap = make(map[uint16]TimerCo)
 	StockDataLookupCoMap = make(map[uint16]StockDataLookupCo)
+	MusicCoMap = make(map[uint16]MusicCo)
 
 	MarketStockCoMap = make(map[uint16]MarketStockCo)
 	PortfolioStockCoMap = make(map[uint16]PortfolioStockCo)

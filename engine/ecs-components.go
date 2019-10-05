@@ -77,5 +77,6 @@ type TimerCo struct {
 
 type MusicCo struct {
 	IsPlaying bool
+	Volume    float32
 	Music     rl.Music
 }
