@@ -11,10 +11,6 @@ func loadLevel() {
 	sys.LoadTextureFromFile("example.png")
 	sys.LoadTextureFromFile("ui_frame.png")
 
-	// load the audio assets
-	song := "mccuck.ogg"
-	sys.LoadMusicFromFile(song)
-
 	// player singleton
 	eng.PlayerCoSingleton = eng.PlayerCo{CurrentAccountValue: 0.0, GamePaused: true, ShowMarket: false, ShowPortfolio: false}
 	eng.CalendarCoSingleton = eng.CalendarCo{ElapsedDayCount: 0, AccumulatedSec: 0}
