@@ -29,7 +29,7 @@ func renderUITick(t float32) {
 	valueStr = fmt.Sprintf("Day Ends In: %.fs", 60.0-CalendarCoSingleton.AccumulatedSec)
 	rl.DrawText(valueStr, 10, 40, 20, rl.Black)
 
-	valueStr = fmt.Sprintf("Day #%v", CalendarCoSingleton.ElapsedDayCount)
+	valueStr = fmt.Sprintf("Day #%v", CalendarCoSingleton.ElapsedDayCount+1)
 	rl.DrawText(valueStr, 10, 70, 20, rl.Black)
 }
 
@@ -70,8 +70,6 @@ func timerSystemTick(t float32) {
 
 	CalendarCoSingleton.AccumulatedSec += t
 	if CalendarCoSingleton.AccumulatedSec > 60 {
-		CalendarCoSingleton.AccumulatedSec -= 60
-		CalendarCoSingleton.ElapsedDayCount++
-		PlayerCoSingleton.GamePaused = true
+		EndDay()
 	}
 }

@@ -23,9 +23,7 @@ func loadLevel() {
 	eng.TextCoMap[coID] = eng.TextCo{Text: "Go to work...", Color: rl.Black, Size: 20, OffsetX: 10, OffsetY: 5}
 	eng.OnClickCoMap[coID] = eng.OnClickCo{Disabled: true, OnClick: func(id uint16) {
 		eng.PlayerCoSingleton.CurrentAccountValue += 500
-		eng.CalendarCoSingleton.AccumulatedSec = 60
-		eng.SetDisableOnClick(id, true)
-		eng.SetDisableOnClick(eng.StartDayButtonID, false)
+		eng.EndDay()
 	}}
 
 	coID = eng.StartDayButtonID

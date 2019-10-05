@@ -37,3 +37,11 @@ func SetDisableOnClick(id uint16, isDisabled bool) {
 	tmp.Disabled = isDisabled
 	OnClickCoMap[id] = tmp
 }
+
+func EndDay() {
+	CalendarCoSingleton.ElapsedDayCount++
+	PlayerCoSingleton.GamePaused = true
+	SetDisableOnClick(StartDayButtonID, false)
+	SetDisableOnClick(GotoWorkButtonID, true)
+	CalendarCoSingleton.AccumulatedSec = 0
+}
