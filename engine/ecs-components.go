@@ -6,6 +6,12 @@ import (
 
 type PlayerCo struct {
 	CurrentAccountValue int64
+	GamePaused          bool
+}
+
+type CalendarCo struct {
+	ElapsedDayCount int64
+	AccumulatedSec  float32
 }
 
 type PlayerPortfolioCo struct {
@@ -38,7 +44,8 @@ type TextCo struct {
 }
 
 type OnClickCo struct {
-	OnClick func()
+	OnClick  func(uint16)
+	Disabled bool
 }
 
 type PlayerStockCo struct {
@@ -54,7 +61,7 @@ type StockCo struct {
 }
 
 type TimerCo struct {
-	OnTick        func()
-	TickLength    float32
-	AccumulatedMS float32
+	OnTick         func(uint16)
+	TickLength     float32
+	AccumulatedSec float32
 }

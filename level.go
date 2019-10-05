@@ -7,19 +7,39 @@ import (
 )
 
 func loadLevel() {
+	var coID uint16 = 0
 	sys.LoadTextureFromFile("example.png")
 
-	// dummy load level for now
-	eng.PlayerCoSingleton = eng.PlayerCo{CurrentAccountValue: 0.0}
+	// player singleton
+	eng.PlayerCoSingleton = eng.PlayerCo{CurrentAccountValue: 0.0, GamePaused: true}
+	eng.CalendarCoSingleton = eng.CalendarCo{ElapsedDayCount: 0, AccumulatedSec: 0}
 
-	eng.RenderCoMap[0] = eng.RenderCo{Texture: "example.png", SourceRect: rl.NewRectangle(0, 0, 30, 30), Tint: rl.White}
-	eng.PositionCoMap[0] = eng.PositionCo{X: 10, Y: 200, Width: 200, Height: 30}
-	eng.TextCoMap[0] = eng.TextCo{Text: "Go to work...", Color: rl.Black, Size: 20, OffsetX: 10, OffsetY: 5}
-	eng.OnClickCoMap[0] = eng.OnClickCo{OnClick: func() {
-		eng.PlayerCoSingleton.CurrentAccountValue += 5
+	// click to work button
+
+	coID = eng.GotoWorkButtonID
+
+	eng.RenderCoMap[coID] = eng.RenderCo{Texture: "example.png", SourceRect: rl.NewRectangle(0, 0, 30, 30), Tint: rl.White}
+	eng.PositionCoMap[coID] = eng.PositionCo{X: 10, Y: 200, Width: 200, Height: 30}
+	eng.TextCoMap[coID] = eng.TextCo{Text: "Go to work...", Color: rl.Black, Size: 20, OffsetX: 10, OffsetY: 5}
+	eng.OnClickCoMap[coID] = eng.OnClickCo{Disabled: true, OnClick: func(id uint16) {
+		eng.PlayerCoSingleton.CurrentAccountValue += 500
+		eng.CalendarCoSingleton.AccumulatedSec = 60
+		eng.SetDisableOnClick(id, true)
+		eng.SetDisableOnClick(eng.StartDayButtonID, false)
 	}}
 
-	eng.TimerCoMap[1] = eng.TimerCo{TickLength: 5, OnTick: func() {
+	coID = eng.StartDayButtonID
+
+	// click to start day button
+	eng.RenderCoMap[coID] = eng.RenderCo{Texture: "example.png", SourceRect: rl.NewRectangle(0, 0, 30, 30), Tint: rl.White}
+	eng.PositionCoMap[coID] = eng.PositionCo{X: 10, Y: 300, Width: 200, Height: 30}
+	eng.TextCoMap[coID] = eng.TextCo{Text: "Start day...", Color: rl.Black, Size: 20, OffsetX: 10, OffsetY: 5}
+	eng.OnClickCoMap[coID] = eng.OnClickCo{Disabled: false, OnClick: func(id uint16) {
+		eng.PlayerCoSingleton.GamePaused = false
 		eng.PlayerCoSingleton.CurrentAccountValue -= 100
+		eng.SetDisableOnClick(id, true)
+		eng.SetDisableOnClick(eng.GotoWorkButtonID, false)
 	}}
+
+	coID = eng.MaxReservedID
 }
