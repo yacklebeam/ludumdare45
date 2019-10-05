@@ -10,12 +10,15 @@ func loadLevel() {
 	var coID uint16 = 0
 	sys.LoadTextureFromFile("example.png")
 
+	// load the audio assets
+	sys.LoadAudioFromFile("McCuckolds_Jingle_(Min).wav")
+	workMusic := sys.GetAudio("McCuckolds_Jingle_(Min).wav")
+
 	// player singleton
 	eng.PlayerCoSingleton = eng.PlayerCo{CurrentAccountValue: 0.0, GamePaused: true, ShowMarket: false}
 	eng.CalendarCoSingleton = eng.CalendarCo{ElapsedDayCount: 0, AccumulatedSec: 0}
 
 	// click to work button
-
 	coID = eng.GotoWorkButtonID
 
 	eng.RenderCoMap[coID] = eng.RenderCo{Texture: "example.png", SourceRect: rl.NewRectangle(0, 0, 30, 30), Tint: rl.White}
@@ -23,8 +26,11 @@ func loadLevel() {
 	eng.TextCoMap[coID] = eng.TextCo{Text: "Go to work...", Color: rl.Black, Size: 20, OffsetX: 10, OffsetY: 5}
 	eng.OnClickCoMap[coID] = eng.OnClickCo{Disabled: true, OnClick: func(id uint16) {
 		eng.PlayerCoSingleton.CurrentAccountValue += 500
+		rl.PlaySound(workMusic)
 		eng.EndDay()
 	}}
+
+	rl.UnloadSound(workMusic)
 
 	coID = eng.StartDayButtonID
 

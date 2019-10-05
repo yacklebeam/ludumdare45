@@ -13,6 +13,7 @@ const (
 
 func main() {
 	rl.InitWindow(gWindowWidth, gWindowHeight, "Ludum Dare #45 Game")
+	rl.InitAudioDevice()
 	sys.LoadDefaults()
 
 	loadLevel()
@@ -25,5 +26,6 @@ func main() {
 		rl.EndDrawing()
 	}
 
+	rl.CloseAudioDevice()
 	rl.CloseWindow()
 }
