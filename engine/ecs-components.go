@@ -26,6 +26,7 @@ type RenderCo struct {
 type PositionCo struct {
 	X      float32
 	Y      float32
+	Z      float32
 	Width  float32
 	Height float32
 }
@@ -37,6 +38,7 @@ type TextCo struct {
 	Color    rl.Color
 	OffsetX  float32
 	OffsetY  float32
+	Visible  bool
 	OnUpdate func(uint16)
 }
 
