@@ -62,3 +62,8 @@ type TimerCo struct {
 	TickLength     float32
 	AccumulatedSec float32
 }
+
+type SoundCo struct {
+	IsPlaying bool
+	Sound     rl.Sound
+}

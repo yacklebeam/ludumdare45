@@ -10,6 +10,7 @@ var PortfolioStockCoMap map[uint16]PortfolioStockCo
 
 var PlayerCoSingleton PlayerCo
 var CalendarCoSingleton CalendarCo
+var SoundCoSingleton SoundCo
 
 var MarketStockCoList []uint16
 var PortfolioStockCoList []uint16

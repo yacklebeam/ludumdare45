@@ -25,7 +25,7 @@ func main() {
 		eng.Tick(t)
 		rl.EndDrawing()
 	}
-
+	rl.UnloadSound(eng.SoundCoSingleton.Sound)
 	rl.CloseAudioDevice()
 	rl.CloseWindow()
 }
