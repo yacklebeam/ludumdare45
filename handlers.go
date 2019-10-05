@@ -48,9 +48,7 @@ func clickToggleMarket(id uint16) {
 		rl.StopSound(eng.SoundCoSingleton.Sound)
 		eng.SoundCoSingleton.IsPlaying = false
 	}
-	toggleMarketSoundFile := "typewriter.ogg"
-	sys.LoadSoundFromFile(toggleMarketSoundFile)
-	eng.SoundCoSingleton.Sound = sys.GetSound(toggleMarketSoundFile)
+	eng.SoundCoSingleton.Sound = sys.GetSound("typewriter.ogg")
 	eng.SoundCoSingleton.IsPlaying = true
 	rl.PlaySound(eng.SoundCoSingleton.Sound)
 	// player

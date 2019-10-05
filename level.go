@@ -10,6 +10,7 @@ func loadLevel() {
 	var coID uint16 = 0
 	sys.LoadTextureFromFile("example.png")
 	sys.LoadTextureFromFile("ui_frame.png")
+	sys.LoadSoundFromFile("typewriter.ogg")
 
 	// player singleton
 	eng.PlayerCoSingleton = eng.PlayerCo{CurrentAccountValue: 0.0, GamePaused: true, ShowMarket: false, ShowPortfolio: false}

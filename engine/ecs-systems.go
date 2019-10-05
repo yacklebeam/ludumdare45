@@ -143,3 +143,6 @@ func timerSystemTick(t float32) {
 		EndDay()
 	}
 }
+
+func audioStreamingTick(t float32) {
+}
