@@ -33,8 +33,8 @@ func clickStartDay(id uint16) {
 
 func clickGotoWork(id uint16) {
 	// audio
-	//sfx := sys.GetSound("mccuck.ogg")
-	//rl.PlaySound(sfx)
+	sfx := sys.GetSound("mccuck.ogg")
+	rl.PlaySound(sfx)
 	//player
 	eng.PlayerCoSingleton.CurrentAccountValue += 500
 	eng.EndDay()

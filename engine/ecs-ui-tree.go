@@ -53,7 +53,7 @@ func uiTreeTick(t float32) {
 				p = PositionCoMap[stock.SelfElemID]
 				p.Y = float32(105 + index*60)
 				p.X = float32(105)
-				PositionCoMap[stock.BotElemID] = p
+				PositionCoMap[stock.SelfElemID] = p
 				o := OnClickCoMap[stock.SelfElemID]
 				o.Disabled = false
 				OnClickCoMap[stock.SelfElemID] = o
