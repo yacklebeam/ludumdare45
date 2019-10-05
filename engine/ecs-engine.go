@@ -6,9 +6,13 @@ var OnClickCoMap map[uint16]OnClickCo
 var TextCoMap map[uint16]TextCo
 var TimerCoMap map[uint16]TimerCo
 var MarketStockCoMap map[uint16]MarketStockCo
+var PortfolioStockCoMap map[uint16]PortfolioStockCo
 
 var PlayerCoSingleton PlayerCo
 var CalendarCoSingleton CalendarCo
+
+var MarketStockCoList []uint16
+var PortfolioStockCoList []uint16
 
 func init() {
 	// init any maps here
@@ -18,12 +22,15 @@ func init() {
 	TextCoMap = make(map[uint16]TextCo)
 	TimerCoMap = make(map[uint16]TimerCo)
 	MarketStockCoMap = make(map[uint16]MarketStockCo)
+	PortfolioStockCoMap = make(map[uint16]PortfolioStockCo)
 }
 
 const (
-	GotoWorkButtonID uint16 = 1
-	StartDayButtonID uint16 = 2
-	MaxReservedID    uint16 = 3
+	GotoWorkButtonID      uint16 = 1
+	StartDayButtonID      uint16 = 2
+	ToggleMarketViewID    uint16 = 3
+	TogglePortfolioViewID uint16 = 4
+	MaxReservedID         uint16 = 5
 )
 
 func Tick(t float32) {
@@ -32,6 +39,8 @@ func Tick(t float32) {
 	renderSystemTick(t)
 	renderTextSystemTick(t)
 	renderUITick(t)
+	renderMarketStockTick(t)
+	renderPortfolioStockTick(t)
 }
 
 func SetDisableOnClick(id uint16, isDisabled bool) {

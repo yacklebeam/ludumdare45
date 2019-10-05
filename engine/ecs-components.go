@@ -8,6 +8,7 @@ type PlayerCo struct {
 	CurrentAccountValue int64
 	GamePaused          bool
 	ShowMarket          bool
+	ShowPortfolio       bool
 }
 
 type CalendarCo struct {
@@ -53,8 +54,7 @@ type MarketStockCo struct {
 }
 
 type PortfolioStockCo struct {
-	Name         string
-	CurrentValue float32
+	CurrentCount int32
 }
 
 type TimerCo struct {
