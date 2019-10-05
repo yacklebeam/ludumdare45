@@ -12,7 +12,8 @@ func loadLevel() {
 	sys.LoadTextureFromFile("ui_frame.png")
 
 	// load the audio assets
-	sys.LoadAudioFromFile("McCuckolds_Jingle_(Min).wav")
+	song := "mccuck.ogg"
+	sys.LoadMusicFromFile(song)
 
 	// player singleton
 	eng.PlayerCoSingleton = eng.PlayerCo{CurrentAccountValue: 0.0, GamePaused: true, ShowMarket: false, ShowPortfolio: false}
@@ -24,6 +25,7 @@ func loadLevel() {
 	eng.PositionCoMap[coID] = eng.PositionCo{X: 10, Y: 200, Width: 200, Height: 30}
 	eng.TextCoMap[coID] = eng.TextCo{Text: "Go to work...", Color: rl.Black, Size: 20, OffsetX: 10, OffsetY: 5}
 	eng.OnClickCoMap[coID] = eng.OnClickCo{Disabled: true, OnClick: clickGotoWork}
+	coID = eng.StartDayButtonID
 
 	// click to start day button
 	coID = eng.StartDayButtonID
