@@ -6,23 +6,46 @@ import (
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
+// RenderCoMap ...
 var RenderCoMap map[uint16]RenderCo
+
+// PositionCoMap ...
 var PositionCoMap map[uint16]PositionCo
+
+// OnClickCoMap ...
 var OnClickCoMap map[uint16]OnClickCo
+
+// TextCoMap ...
 var TextCoMap map[uint16]TextCo
+
+// TimerCoMap ...
 var TimerCoMap map[uint16]TimerCo
+
+// StockDataLookupCoMap ...
 var StockDataLookupCoMap map[uint16]StockDataLookupCo
 
+// MarketStockCoMap ...
 var MarketStockCoMap map[uint16]MarketStockCo
+
+// PortfolioStockCoMap ...
 var PortfolioStockCoMap map[uint16]PortfolioStockCo
 
+// MusicCoMap is a map of render components
 var MusicCoMap map[uint16]MusicCo
 
+// PlayerCoSingleton ...
 var PlayerCoSingleton PlayerCo
+
+// CalendarCoSingleton ...
 var CalendarCoSingleton CalendarCo
+
+// MusicCoSingleton ...
 var MusicCoSingleton MusicCo
 
+// MarketStockCoList ...
 var MarketStockCoList []uint16
+
+// PortfolioStockCoList ...
 var PortfolioStockCoList []uint16
 
 var renderPipeline []renderable
@@ -61,6 +84,7 @@ const (
 	MaxReservedID         uint16 = 5
 )
 
+// Tick ...
 func Tick(t float32) {
 	uiTreeTick(t)
 
@@ -76,12 +100,14 @@ func Tick(t float32) {
 	renderPipelineTick(t)
 }
 
+// SetDisableOnClick ...
 func SetDisableOnClick(id uint16, isDisabled bool) {
 	tmp := OnClickCoMap[id]
 	tmp.Disabled = isDisabled
 	OnClickCoMap[id] = tmp
 }
 
+// EndDay ...
 func EndDay() {
 	CalendarCoSingleton.ElapsedDayCount++
 	PlayerCoSingleton.GamePaused = true

@@ -4,6 +4,7 @@ import (
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
+// PlayerCo ...
 type PlayerCo struct {
 	CurrentAccountValue int64
 	GamePaused          bool
@@ -11,11 +12,13 @@ type PlayerCo struct {
 	ShowPortfolio       bool
 }
 
+// CalendarCo ...
 type CalendarCo struct {
 	ElapsedDayCount int64
 	AccumulatedSec  float32
 }
 
+// RenderCo ...
 type RenderCo struct {
 	Texture    string
 	Tint       rl.Color
@@ -23,6 +26,7 @@ type RenderCo struct {
 	Visible    bool
 }
 
+// PositionCo ...
 type PositionCo struct {
 	X      float32
 	Y      float32
@@ -31,6 +35,7 @@ type PositionCo struct {
 	Height float32
 }
 
+// TextCo ...
 type TextCo struct {
 	RawText  string
 	Text     string
@@ -42,11 +47,13 @@ type TextCo struct {
 	OnUpdate func(uint16)
 }
 
+// OnClickCo ...
 type OnClickCo struct {
 	OnClick  func(uint16)
 	Disabled bool
 }
 
+// PlayerStockCo ...
 type PlayerStockCo struct {
 	id        uint32
 	numShares int32
@@ -71,12 +78,14 @@ type StockDataLookupCo struct {
 	Available        bool
 }
 
+// TimerCo ...
 type TimerCo struct {
 	OnTick         func(uint16)
 	TickLength     float32
 	AccumulatedSec float32
 }
 
+// MusicCo ...
 type MusicCo struct {
 	IsPlaying bool
 	Volume    float32

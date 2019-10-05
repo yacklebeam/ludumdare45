@@ -1,11 +1,18 @@
 package engine
 
+// MarketUIFrameID ...
 var MarketUIFrameID uint16
+
+// MarketUIList ...
 var MarketUIList []StockUIElem
 
+// PortfolioUIFrameID ...
 var PortfolioUIFrameID uint16
+
+// PortfolioUIList ...
 var PortfolioUIList []StockUIElem
 
+// StockUIElem ...
 type StockUIElem struct {
 	TopElemID uint16
 	MidElemID uint16
