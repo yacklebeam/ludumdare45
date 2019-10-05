@@ -28,9 +28,6 @@ func loadLevel() {
 	eng.PlayerCoSingleton = eng.PlayerCo{CurrentAccountValue: 0.0, GamePaused: true, ShowMarket: false, ShowPortfolio: false}
 	eng.CalendarCoSingleton = eng.CalendarCo{ElapsedDayCount: 0, AccumulatedSec: 0}
 
-	// music singleton
-	eng.MusicCoSingleton = eng.MusicCo{Music: sys.GetMusic("wind.ogg"), Volume: 5.0}
-
 	// click to work button
 	coID = eng.GotoWorkButtonID
 	eng.RenderCoMap[coID] = eng.RenderCo{Texture: "example.png", SourceRect: rl.NewRectangle(0, 0, 30, 30), Tint: rl.White, Visible: true}

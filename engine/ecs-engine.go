@@ -30,9 +30,6 @@ var MarketStockCoMap map[uint16]MarketStockCo
 // PortfolioStockCoMap ...
 var PortfolioStockCoMap map[uint16]PortfolioStockCo
 
-// MusicCoMap is a map of render components
-var MusicCoMap map[uint16]MusicCo
-
 // PlayerCoSingleton ...
 var PlayerCoSingleton PlayerCo
 
@@ -69,7 +66,6 @@ func init() {
 	TextCoMap = make(map[uint16]TextCo)
 	TimerCoMap = make(map[uint16]TimerCo)
 	StockDataLookupCoMap = make(map[uint16]StockDataLookupCo)
-	MusicCoMap = make(map[uint16]MusicCo)
 
 	MarketStockCoMap = make(map[uint16]MarketStockCo)
 	PortfolioStockCoMap = make(map[uint16]PortfolioStockCo)

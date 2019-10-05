@@ -21,7 +21,7 @@ func clickStartDay(id uint16) {
 		rl.StopMusicStream(eng.MusicCoSingleton.Music)
 		eng.MusicCoSingleton.IsPlaying = false
 	}
-	//rl.SetMusicVolume(eng.MusicCoSingleton.Music, eng.MusicCoSingleton.Volume)
+	eng.MusicCoSingleton.Music = sys.GetMusic("wind.ogg")
 	rl.PlayMusicStream(eng.MusicCoSingleton.Music)
 	eng.MusicCoSingleton.IsPlaying = true
 	// player
