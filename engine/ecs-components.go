@@ -20,6 +20,7 @@ type RenderCo struct {
 	Texture    string
 	Tint       rl.Color
 	SourceRect rl.Rectangle
+	Visible    bool
 }
 
 type PositionCo struct {
@@ -30,11 +31,13 @@ type PositionCo struct {
 }
 
 type TextCo struct {
-	Text    string
-	Size    int32
-	Color   rl.Color
-	OffsetX float32
-	OffsetY float32
+	RawText  string
+	Text     string
+	Size     int32
+	Color    rl.Color
+	OffsetX  float32
+	OffsetY  float32
+	OnUpdate func(uint16)
 }
 
 type OnClickCo struct {
@@ -47,14 +50,23 @@ type PlayerStockCo struct {
 	numShares int32
 }
 
-type MarketStockCo struct {
-	Name         string
-	CurrentValue float32
-	SharesOut    int32
+// PortfolioStockCo is used to tie the in game entities back to the stock data
+type PortfolioStockCo struct {
+	ID uint16
 }
 
-type PortfolioStockCo struct {
-	CurrentCount int32
+// MarketStockCo is used to tie the in game entities back to the stock data
+type MarketStockCo struct {
+	ID uint16
+}
+
+// StockDataLookupCo is a component used to store information about a particular stock type
+type StockDataLookupCo struct {
+	Name             string
+	CurrentPrice     float32
+	SharesOut        int32
+	PlayerShareCount int32
+	Available        bool
 }
 
 type TimerCo struct {

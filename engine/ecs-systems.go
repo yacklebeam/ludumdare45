@@ -1,8 +1,6 @@
 package engine
 
 import (
-	"fmt"
-
 	rl "github.com/gen2brain/raylib-go/raylib"
 	sys "github.com/yacklebeam/ludumdare45/system"
 )
@@ -11,7 +9,7 @@ func renderSystemTick(t float32) { // RenderCo, PositionCo
 	for id, r := range RenderCoMap {
 		p, hasPosition := PositionCoMap[id]
 		o, hasOnClick := OnClickCoMap[id]
-		if hasPosition {
+		if hasPosition && r.Visible {
 			if hasOnClick && o.Disabled {
 				rl.DrawTexturePro(sys.GetTexture(r.Texture), r.SourceRect, rl.NewRectangle(p.X, p.Y, p.Width, p.Height), rl.NewVector2(0, 0), 0, rl.Black)
 			} else {
@@ -21,19 +19,11 @@ func renderSystemTick(t float32) { // RenderCo, PositionCo
 	}
 }
 
-func renderUITick(t float32) {
-	valueStr := fmt.Sprintf("Account Value: $%v", PlayerCoSingleton.CurrentAccountValue)
-	rl.DrawText(valueStr, 10, 10, 20, rl.Black)
-
-	valueStr = fmt.Sprintf("Day Ends In: %.fs", 60.0-CalendarCoSingleton.AccumulatedSec)
-	rl.DrawText(valueStr, 10, 40, 20, rl.Black)
-
-	valueStr = fmt.Sprintf("Day #%v", CalendarCoSingleton.ElapsedDayCount+1)
-	rl.DrawText(valueStr, 10, 70, 20, rl.Black)
-}
-
 func renderTextSystemTick(t float32) {
 	for id, t := range TextCoMap {
+		if t.OnUpdate != nil {
+			t.OnUpdate(id)
+		}
 		p, hasPosition := PositionCoMap[id]
 		if hasPosition {
 			rl.DrawText(t.Text, int32(p.X+t.OffsetX), int32(p.Y+t.OffsetY), t.Size, t.Color)
@@ -41,7 +31,7 @@ func renderTextSystemTick(t float32) {
 	}
 }
 
-func renderMarketStockTick(t float32) {
+/*func renderMarketStockTick(t float32) {
 	if PlayerCoSingleton.ShowMarket {
 		rl.DrawTexturePro(sys.GetTexture("ui_frame.png"), rl.NewRectangle(0, 0, 100, 100), rl.NewRectangle(100, 100, 400, 400), rl.NewVector2(0, 0), 0, rl.White)
 		for index, id := range MarketStockCoList {
@@ -74,9 +64,9 @@ func renderMarketStockTick(t float32) {
 			}
 		}
 	}
-}
+}*/
 
-func renderPortfolioStockTick(t float32) {
+/*func renderPortfolioStockTick(t float32) {
 	if PlayerCoSingleton.ShowPortfolio {
 		rl.DrawTexturePro(sys.GetTexture("ui_frame.png"), rl.NewRectangle(0, 0, 100, 100), rl.NewRectangle(100, 100, 400, 400), rl.NewVector2(0, 0), 0, rl.White)
 		for index, id := range PortfolioStockCoList {
@@ -110,7 +100,7 @@ func renderPortfolioStockTick(t float32) {
 			}
 		}
 	}
-}
+}*/
 
 func onClickSystemTick(t float32) {
 	for id, o := range OnClickCoMap {

@@ -7,15 +7,11 @@ import (
 )
 
 func clickMarketStock(id uint16) {
-	// add 1 of this stock to player portfolio
-	eng.PortfolioStockCoList = append(eng.PortfolioStockCoList, id)
-	s, exists := eng.PortfolioStockCoMap[id]
-	if exists {
-		s.CurrentCount++
-		eng.PortfolioStockCoMap[id] = s
-	} else {
-		eng.PortfolioStockCoMap[id] = eng.PortfolioStockCo{CurrentCount: 1}
-	}
+
+}
+
+func clickPortfolioStock(id uint16) {
+
 }
 
 func clickStartDay(id uint16) {
@@ -32,9 +28,8 @@ func clickGotoWork(id uint16) {
 		rl.StopSound(eng.SoundCoSingleton.Sound)
 		eng.SoundCoSingleton.IsPlaying = false
 	}
-	gotoWorkSoundFile := "mccuck.ogg"
-	sys.LoadSoundFromFile(gotoWorkSoundFile)
-	eng.SoundCoSingleton.Sound = sys.GetSound(gotoWorkSoundFile)
+	// we shouldn't use the singleton for one-off sounds, just for background music that is always playing
+	eng.SoundCoSingleton.Sound = sys.GetSound("mccuck.ogg")
 	eng.SoundCoSingleton.IsPlaying = true
 	rl.PlaySound(eng.SoundCoSingleton.Sound)
 	//player
@@ -44,13 +39,13 @@ func clickGotoWork(id uint16) {
 
 func clickToggleMarket(id uint16) {
 	// audio
-	if eng.SoundCoSingleton.IsPlaying {
+	/*if eng.SoundCoSingleton.IsPlaying {
 		rl.StopSound(eng.SoundCoSingleton.Sound)
 		eng.SoundCoSingleton.IsPlaying = false
 	}
 	eng.SoundCoSingleton.Sound = sys.GetSound("typewriter.ogg")
 	eng.SoundCoSingleton.IsPlaying = true
-	rl.PlaySound(eng.SoundCoSingleton.Sound)
+	rl.PlaySound(eng.SoundCoSingleton.Sound)*/
 	// player
 	eng.PlayerCoSingleton.ShowMarket = !eng.PlayerCoSingleton.ShowMarket
 	if eng.PlayerCoSingleton.ShowMarket {
