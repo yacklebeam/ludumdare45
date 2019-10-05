@@ -26,19 +26,33 @@ func clickStartDay(id uint16) {
 }
 
 func clickGotoWork(id uint16) {
+	// audio
+	if eng.SoundCoSingleton.IsPlaying {
+		rl.StopSound(eng.SoundCoSingleton.Sound)
+		eng.SoundCoSingleton.IsPlaying = false
+	}
 	gotoWorkSoundFile := "mccuck.ogg"
 	sys.LoadSoundFromFile(gotoWorkSoundFile)
 	eng.SoundCoSingleton.Sound = sys.GetSound(gotoWorkSoundFile)
+	eng.SoundCoSingleton.IsPlaying = true
 	rl.PlaySound(eng.SoundCoSingleton.Sound)
+	//player
 	eng.PlayerCoSingleton.CurrentAccountValue += 500
 	eng.EndDay()
 }
 
 func clickToggleMarket(id uint16) {
+	// audio
+	if eng.SoundCoSingleton.IsPlaying {
+		rl.StopSound(eng.SoundCoSingleton.Sound)
+		eng.SoundCoSingleton.IsPlaying = false
+	}
 	toggleMarketSoundFile := "typewriter.ogg"
 	sys.LoadSoundFromFile(toggleMarketSoundFile)
 	eng.SoundCoSingleton.Sound = sys.GetSound(toggleMarketSoundFile)
+	eng.SoundCoSingleton.IsPlaying = true
 	rl.PlaySound(eng.SoundCoSingleton.Sound)
+	// player
 	eng.PlayerCoSingleton.ShowMarket = !eng.PlayerCoSingleton.ShowMarket
 	if eng.PlayerCoSingleton.ShowMarket {
 		eng.PlayerCoSingleton.ShowPortfolio = false
